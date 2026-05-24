@@ -38,7 +38,7 @@ export default function DashboardPage() {
   return (
     <>
       {/* ── Page Shell ── */}
-      <div style={{ minHeight: '100vh', background: 'var(--color-bg)' }}>
+      <div style={{ minHeight: '100vh', background: 'var(--color-bg)', display: 'flex', flexDirection: 'column' }}>
         {/* ── Top Bar ── */}
         <header
           style={{
@@ -58,6 +58,7 @@ export default function DashboardPage() {
               padding: '18px 24px',
               maxWidth: 1280,
               margin: '0 auto',
+              width: '100%',
             }}
           >
             {/* Brand */}
@@ -115,6 +116,8 @@ export default function DashboardPage() {
             maxWidth: 1280,
             margin: '0 auto',
             padding: '32px 24px',
+            flex: 1,
+            width: '100%',
           }}
         >
           {/* Page Title + Search */}
@@ -189,6 +192,24 @@ export default function DashboardPage() {
             </div>
           )}
         </main>
+
+        {/* ── Footer ── */}
+        <footer
+          style={{
+            borderTop: '1px solid var(--color-border)',
+            padding: '24px',
+            textAlign: 'center',
+            fontSize: '0.825rem',
+            color: 'var(--color-text-muted)',
+            background: 'var(--color-surface)',
+          }}
+        >
+          <div className="container" style={{ maxWidth: 1280, margin: '0 auto', width: '100%' }}>
+            <p style={{ margin: 0, fontWeight: 500 }}>
+              Created by <span style={{ color: 'var(--color-text)', fontWeight: 600 }}>Trepurtech</span> 2026
+            </p>
+          </div>
+        </footer>
       </div>
 
       {/* ── Modal ── */}
