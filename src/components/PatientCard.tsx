@@ -31,23 +31,6 @@ export default function PatientCard({ patient, onClick }: PatientCardProps) {
             {age} years old
           </p>
         </div>
-        <span
-          style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: 4,
-            background: 'var(--color-bg)',
-            border: '1px solid var(--color-border)',
-            borderRadius: 'var(--radius-md)',
-            padding: '4px 10px',
-            fontSize: '0.75rem',
-            fontWeight: 600,
-            color: 'var(--color-text-secondary)',
-          }}
-        >
-          <span style={{ fontSize: '0.65rem', opacity: 0.6 }}>DW</span>
-          {patient.dry_weight} kg
-        </span>
       </div>
 
       {/* Divider */}
