@@ -2,7 +2,6 @@ export interface Patient {
   id: string;
   full_name: string;
   birth_date: string;
-  dry_weight: number;
   schedule: string[];
   created_at: string;
 }
@@ -16,6 +15,7 @@ export interface DialysisRecord {
   uv: number;
   post_bp: string;
   post_weight: number;
+  dry_weight: number;
   notes?: string;
   created_at: string;
 }

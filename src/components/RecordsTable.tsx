@@ -141,7 +141,7 @@ export default function RecordsTable({ patient, records }: RecordsTableProps) {
                         fontWeight: 600,
                       }}
                     >
-                      {patient.dry_weight} kg
+                      {record.dry_weight} kg
                     </span>
                   </td>
                   <td style={{ maxWidth: 200, whiteSpace: 'normal', fontSize: '0.8125rem' }}>

@@ -52,7 +52,7 @@ export function exportToCSV(patient: Patient, records: DialysisRecord[]): void {
     r.uv,
     r.post_bp,
     r.post_weight,
-    patient.dry_weight,
+    r.dry_weight,
     r.notes ?? '',
   ]);
 
@@ -99,8 +99,7 @@ export function exportToPDF(patient: Patient, records: DialysisRecord[]): void {
   doc.setTextColor(75, 85, 99);
   doc.text(`Age: ${computeAge(patient.birth_date)} years`, 20, 44);
   doc.text(`Date of Birth: ${formatBirthDate(patient.birth_date)}`, 20, 50);
-  doc.text(`Dry Weight: ${patient.dry_weight} kg`, 100, 44);
-  doc.text(`Schedule: ${patient.schedule.join(', ')}`, 100, 50);
+  doc.text(`Schedule: ${patient.schedule.join(', ')}`, 100, 44);
 
   // Table
   const tableHeaders = [
@@ -121,7 +120,7 @@ export function exportToPDF(patient: Patient, records: DialysisRecord[]): void {
     r.uv.toString(),
     r.post_bp,
     r.post_weight.toString(),
-    patient.dry_weight.toString(),
+    r.dry_weight.toString(),
     r.notes ?? '',
   ]);
 

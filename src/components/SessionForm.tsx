@@ -11,6 +11,7 @@ interface SessionFormProps {
 
 interface FormState {
   date: string;
+  dry_weight: string;
   pre_weight: string;
   pre_bp: string;
   uv: string;
@@ -21,6 +22,7 @@ interface FormState {
 
 interface FormErrors {
   date?: string;
+  dry_weight?: string;
   pre_weight?: string;
   pre_bp?: string;
   uv?: string;
@@ -34,6 +36,7 @@ const today = new Date().toISOString().split('T')[0];
 export default function SessionForm({ patient, onSuccess }: SessionFormProps) {
   const [form, setForm] = useState<FormState>({
     date: today,
+    dry_weight: '',
     pre_weight: '',
     pre_bp: '',
     uv: '',
@@ -51,6 +54,8 @@ export default function SessionForm({ patient, onSuccess }: SessionFormProps) {
   const validate = (): boolean => {
     const e: FormErrors = {};
     if (!form.date) e.date = 'Date is required.';
+    if (!form.dry_weight || isNaN(Number(form.dry_weight)) || Number(form.dry_weight) <= 0)
+      e.dry_weight = 'Enter a valid dry weight (kg).';
     if (!form.pre_weight || isNaN(Number(form.pre_weight)) || Number(form.pre_weight) <= 0)
       e.pre_weight = 'Enter a valid weight.';
     if (!BP_PATTERN.test(form.pre_bp.trim()))
@@ -74,6 +79,7 @@ export default function SessionForm({ patient, onSuccess }: SessionFormProps) {
       {
         patient_id: patient.id,
         date: form.date,
+        dry_weight: Number(form.dry_weight),
         pre_weight: Number(form.pre_weight),
         pre_bp: form.pre_bp.trim(),
         uv: Number(form.uv),
@@ -90,7 +96,7 @@ export default function SessionForm({ patient, onSuccess }: SessionFormProps) {
     }
 
     // Reset form
-    setForm({ date: today, pre_weight: '', pre_bp: '', uv: '', post_weight: '', post_bp: '', notes: '' });
+    setForm({ date: today, dry_weight: '', pre_weight: '', pre_bp: '', uv: '', post_weight: '', post_bp: '', notes: '' });
     setErrors({});
     setSuccessMsg(true);
     setTimeout(() => setSuccessMsg(false), 3000);
@@ -119,6 +125,22 @@ export default function SessionForm({ patient, onSuccess }: SessionFormProps) {
             max={today}
           />
           {errors.date && <span className="error-msg">{errors.date}</span>}
+        </div>
+
+        {/* Dry Weight */}
+        <div className="form-group">
+          <label htmlFor="session-dry-weight">Dry Weight (kg)</label>
+          <input
+            id="session-dry-weight"
+            type="number"
+            placeholder="e.g. 58.5"
+            value={form.dry_weight}
+            onChange={set('dry_weight')}
+            className={errors.dry_weight ? 'input-error' : ''}
+            step="0.1"
+            min="0"
+          />
+          {errors.dry_weight && <span className="error-msg">{errors.dry_weight}</span>}
         </div>
 
         {/* Pre-Treatment */}

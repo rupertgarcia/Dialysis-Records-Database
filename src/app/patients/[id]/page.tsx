@@ -218,7 +218,7 @@ export default function PatientDetailPage() {
             </div>
           </div>
 
-          {/* Right: Dry Weight + Schedule */}
+          {/* Right: Schedule */}
           <div
             style={{
               display: 'flex',
@@ -229,18 +229,6 @@ export default function PatientDetailPage() {
               borderLeft: '1px solid var(--color-border)',
             }}
           >
-            <div>
-              <p style={{ fontSize: '0.65rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--color-text-muted)', marginBottom: 6 }}>
-                Dry Weight
-              </p>
-              <div style={{ display: 'flex', alignItems: 'baseline', gap: 4 }}>
-                <span style={{ fontSize: '2rem', fontWeight: 700, lineHeight: 1, color: 'var(--color-text-primary)' }}>
-                  {patient.dry_weight}
-                </span>
-                <span style={{ fontSize: '0.875rem', color: 'var(--color-text-muted)' }}>kg</span>
-              </div>
-            </div>
-
             <div>
               <p style={{ fontSize: '0.65rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--color-text-muted)', marginBottom: 8 }}>
                 Scheduled Days

@@ -13,14 +13,12 @@ interface AddPatientModalProps {
 interface FormErrors {
   full_name?: string;
   birth_date?: string;
-  dry_weight?: string;
   schedule?: string;
 }
 
 export default function AddPatientModal({ onClose, onSuccess }: AddPatientModalProps) {
   const [fullName, setFullName] = useState('');
   const [birthDate, setBirthDate] = useState('');
-  const [dryWeight, setDryWeight] = useState('');
   const [selectedDays, setSelectedDays] = useState<string[]>([]);
   const [errors, setErrors] = useState<FormErrors>({});
   const [loading, setLoading] = useState(false);
@@ -35,8 +33,6 @@ export default function AddPatientModal({ onClose, onSuccess }: AddPatientModalP
     const newErrors: FormErrors = {};
     if (!fullName.trim()) newErrors.full_name = 'Full name is required.';
     if (!birthDate) newErrors.birth_date = 'Date of birth is required.';
-    if (!dryWeight || isNaN(Number(dryWeight)) || Number(dryWeight) <= 0)
-      newErrors.dry_weight = 'Enter a valid dry weight (kg).';
     if (selectedDays.length === 0)
       newErrors.schedule = 'Select at least one dialysis day.';
     setErrors(newErrors);
@@ -52,7 +48,6 @@ export default function AddPatientModal({ onClose, onSuccess }: AddPatientModalP
       {
         full_name: fullName.trim(),
         birth_date: birthDate,
-        dry_weight: Number(dryWeight),
         schedule: selectedDays,
       },
     ]);
@@ -76,7 +71,7 @@ export default function AddPatientModal({ onClose, onSuccess }: AddPatientModalP
               Add New Patient
             </h2>
             <p style={{ fontSize: '0.75rem', color: 'var(--color-text-muted)', margin: 0 }}>
-              Enter patient demographics and dialysis schedule.
+              Enter patient demographics and dialysis schedule. Dry weight is recorded per session.
             </p>
           </div>
           <button className="modal-close" onClick={onClose} aria-label="Close modal">
@@ -117,21 +112,6 @@ export default function AddPatientModal({ onClose, onSuccess }: AddPatientModalP
               {errors.birth_date && <span className="error-msg">{errors.birth_date}</span>}
             </div>
 
-            {/* Dry Weight */}
-            <div className="form-group">
-              <label htmlFor="patient-dryweight">Dry Weight (kg)</label>
-              <input
-                id="patient-dryweight"
-                type="number"
-                placeholder="e.g. 58.5"
-                value={dryWeight}
-                onChange={(e) => setDryWeight(e.target.value)}
-                className={errors.dry_weight ? 'input-error' : ''}
-                step="0.1"
-                min="0"
-              />
-              {errors.dry_weight && <span className="error-msg">{errors.dry_weight}</span>}
-            </div>
 
             {/* Schedule */}
             <div className="form-group">
